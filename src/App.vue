@@ -1,19 +1,22 @@
 <template>
-<SelectParam />
+<LoginPage v-if="!statusLogin"/>
+<SelectParam v-else/>
 
 </template> 
 <script>
 import SelectParam from "./components/SelectParam.vue"
+import LoginPage from "./components/LoginPage.vue";
 
 export default {
 name: 'App',
 data() {
   return{
-    
+    statusLogin: false
   };
 },
 components:{
-  SelectParam
+  SelectParam,
+  LoginPage
 },
 methods: {
 

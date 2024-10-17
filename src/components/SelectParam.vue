@@ -11,7 +11,7 @@
             </ul>
         </section>
         <button @click="SendPostPriority">Отправить</button>
-    </div>
+    </div> 
 
 </template> 
 <script>
@@ -87,14 +87,6 @@ async mounted() {
 </script>
 
 <style lang="scss">
-body {
-  font-family: "Tahoma", sans-serif;
-  font-size: 18px;
-  line-height: 25px;
-  color: #164a44;
-
-  background-color: #b2d9d0;
-}
 
 .tasks__title {
   margin: 50px 0 20px 0;
@@ -116,7 +108,7 @@ body {
   padding: 5px;
 
   text-align: center;
-  border: 2px dashed #b2d9d0;
+  border: 2px line #374b46;
   border-radius: 10px;
   cursor: move;
   background-color: #dff2ef;
