@@ -33,7 +33,7 @@ async function FetchGet(http){
 
 }
 
-async function FetchPost(http,datapost,dopparamhttp){
+async function FetchPost(http,datapost){
     if(ShowFetchData) console.log(JSON.stringify(datapost))
     let AcsessKey = localStorage.data
     try {

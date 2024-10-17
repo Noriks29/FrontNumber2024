@@ -71,7 +71,7 @@ methods: {
         let data = {}
         form.forEach(input => {
             if(input.value == "") {
-                const lable = document.getElementById("createHR").querySelector("#"+input.id+"ERR").style.display = "block"
+                document.getElementById("createHR").querySelector("#"+input.id+"ERR").style.display = "block"
                 flagValidate = true
                 
             }
@@ -91,7 +91,7 @@ methods: {
         let data = {}
         form.forEach(input => {
             if(input.value == "") {
-                const lable = document.getElementById("LoginHR").querySelector("#"+input.id+"ERR").style.display = "block"
+                document.getElementById("LoginHR").querySelector("#"+input.id+"ERR").style.display = "block"
                 flagValidate = true
             }
             else{
