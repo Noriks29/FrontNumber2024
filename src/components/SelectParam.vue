@@ -1,13 +1,26 @@
 <template>
     <div>
+      <div class="indecatorsLoatGlopal">
+        <div v-for="data,index in indecatorsLoatGlopal"
+          :key="index"
+          @click="AddIndicators(data)"
+          v-show="!data.use == true"
+        >
+          {{ data.name }}
+        </div>
+      </div>
+      <div>
+        <input type="text" name="requestSearch" id="requestSearch">
+      </div>
         <section class="tasks" @dragstart="$event.target.classList.add('selected')" @dragend="$event.target.classList.remove('selected')">
             <h1 class="tasks__title">To do list</h1>
             <ul class="tasks__list" @dragover="DragoverEvent">
-                <li v-for="index, data in datalist"
+                <li v-for="data, index in datalist"
                     :key="index"
                     class="tasks__item"
                     draggable="true"
-                >{{ data }}</li>
+                    :id = data.id
+                >{{ data.name }}</li>
             </ul>
         </section>
         <button @click="SendPostPriority">Отправить</button>
@@ -16,17 +29,26 @@
 </template> 
 <script>
 
+import { FetchGet } from '@/Js/RestFetchService';
+
 export default {
 name: 'SelectParam',
+props:{
+  loginData:{
+    type: Object
+  },
+},
 data() {
   return{
-    datalist: ["1", "2", "3", "4", "5"],
+    indecatorsLoatGlopal: undefined,
+    datalist: [],
     data: []
   };
 },
 methods: {
     DragoverEvent(e){
         // Разрешаем сбрасывать элементы в эту область
+
         e.preventDefault();
 
         // Находим перемещаемый элемент
@@ -73,15 +95,37 @@ methods: {
     SendPostPriority(){
         this.data = []
         document.querySelector(`.tasks__list`).querySelectorAll(`.tasks__item`).forEach(element =>{
-            this.data.push(element.innerHTML)
+            this.data.push(element.id)
         })
         console.log(this.data)
+        let job_title = document.getElementById("requestSearch").value
+        let dataPost = {
+          "indicators": this.data,
+          "job_title": job_title
+        }
+        console.log(JSON.stringify(dataPost, null, 2))
+    },
+    AddIndicators(data){
+
+      console.log(data)
+      if(this.datalist.length < 5){
+        this.indecatorsLoatGlopal.forEach(element => {
+          if(element.id == data.id){
+            element.use = true
+          }
+        })
+        this.datalist.push(data)
+      }
     }
 
 
 
 },
 async mounted() {
+  console.log(this.loginData)
+  let indicators = await FetchGet("/hhelper/indicators") || []
+  console.log(indicators)
+  this.indecatorsLoatGlopal = indicators
 }
 }
 </script>
@@ -122,5 +166,17 @@ async mounted() {
 
 .selected {
   opacity: 0.6;
+}
+
+
+.indecatorsLoatGlopal{
+  display: flex;
+  flex-wrap: wrap;
+  div{
+    padding: 4px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 3px;
+  }
 }
 </style>

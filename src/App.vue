@@ -1,25 +1,36 @@
 <template>
-<LoginPage v-if="!statusLogin"/>
-<SelectParam v-else/>
+<LoginPage v-if="!statusLogin" @LoginStatus="GetStartetMain"/>
+<MainPage :loginData="loginData" @LoginStatus="GetStartetMain" v-else/>
 
 </template> 
 <script>
-import SelectParam from "./components/SelectParam.vue"
 import LoginPage from "./components/LoginPage.vue";
+import MainPage from "./components/MainPage.vue";
 
 export default {
 name: 'App',
 data() {
   return{
-    statusLogin: false
+    statusLogin: true,
+    loginData: undefined
   };
 },
 components:{
-  SelectParam,
-  LoginPage
+  LoginPage,
+  MainPage
 },
 methods: {
-
+  GetStartetMain(data){
+    if(data !== undefined){
+      this.loginData = data
+      this.statusLogin = true
+    }
+    else{
+      this.loginData = undefined
+      this.statusLogin = false
+    }
+    
+  }
 
 
 },

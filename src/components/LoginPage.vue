@@ -54,13 +54,14 @@
 </template> 
 <script>
 
-import { FetchPost } from '@/Js/RestFetchService';
+import {FetchPost } from '@/Js/RestFetchService';
 
 export default {
 name: 'LoginPage',
 data() {
   return{
-    loginmode: 0
+    loginmode: 0,
+    PersonData: undefined
   };
 },
 methods: {
@@ -81,7 +82,19 @@ methods: {
         })
         if (!flagValidate) {
             console.log(JSON.stringify(data, null, 2))
-            await FetchPost("/hhelper/registration", data)
+            let responce =  await FetchPost("/hhelper/registration", data)
+            try {
+                if(responce.success){
+                    alert("Аккаунт создвн")
+                    this.loginmode = 0
+                }
+                else{
+                    alert("аккант не создан ошибка")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+            
         }
     },
     async StartLogin(){
@@ -100,8 +113,14 @@ methods: {
         })
         if (!flagValidate) {
             console.log(JSON.stringify(data, null, 2))
-            await FetchPost("/hhelper/stafflog", data)
+            this.PersonData = await FetchPost("/hhelper/stafflog", data) || {}
+            console.log(this.PersonData)
+            if(this.PersonData.pk != undefined) this.EndLoginPage()
+            
         }
+    },
+    EndLoginPage(){
+        this.$emit('LoginStatus', this.PersonData)
     }
 
 },

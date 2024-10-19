@@ -12,9 +12,8 @@ function DisplayLoad(status){
     }
 }*/
 async function FetchGet(http){
-    let AcsessKey = localStorage.data
     try {
-        const response = await fetch(adress+http+'?accessKey='+AcsessKey);
+        const response = await fetch(adress+http);
         if (!response.ok) {
             let rezult = await response.json()
             if(ShowFetchData) console.log(http,rezult)
@@ -35,9 +34,8 @@ async function FetchGet(http){
 
 async function FetchPost(http,datapost){
     if(ShowFetchData) console.log(JSON.stringify(datapost))
-    let AcsessKey = localStorage.data
     try {
-        const response = await fetch(adress+http+'?accessKey='+AcsessKey,{
+        const response = await fetch(adress+http,{
           method:  'POST',
           headers: {
             'Content-Type': 'application/json'
