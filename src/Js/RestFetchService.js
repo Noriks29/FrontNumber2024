@@ -1,6 +1,7 @@
 import { adress } from "./ServerConfig";
 
 const ShowFetchData = true
+const DEBUGMODE = true
 /*
 function DisplayLoad(status){
     const element = document.getElementById("loadProcess");
@@ -13,6 +14,7 @@ function DisplayLoad(status){
 }*/
 async function FetchGet(http){
     try {
+        console.log(DEBUGMODE)
         const response = await fetch(adress+http);
         if (!response.ok) {
             let rezult = await response.json()

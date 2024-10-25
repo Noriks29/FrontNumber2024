@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Aeroport';
+    font-weight: bold;
+    src: local('Aeroport'), url("../fonts/AeroportBold.ttf");
+}
+@font-face {
+    font-family: 'Aeroport';
+    font-weight: lighter;
+    src: local('Aeroport'), url("../fonts/AeroportLight.ttf");
+}
+@keyframes BGShow {
+    0% {opacity : 0;}
+    100% {opacity : 1;}
+}
+
+
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+
+    #app{
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        transition: background-color 1s;
+
+        &.greenBG{
+            background-color: #D9FA72;
+        }
+    }
+}

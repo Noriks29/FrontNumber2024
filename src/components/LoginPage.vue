@@ -1,52 +1,40 @@
 <template>
     <div class="loginDiv">
-        <div v-if="loginmode == 0" class="loginForm" id="LoginHR">
-            <h1>Вход в аккаунт</h1>
+        <h1 class="TitleText">Создаем возможности для вашего роста!</h1>
+
+        <div class="loginForm">
+            <h1 v-if="loginmode == 0">Вход</h1>
+            <h1 v-if="loginmode == 1">Регистрация</h1>
 
             <div class="LableDiv">
-                <label for="login">login</label>
+                <label for="login">Имя пользователя</label>
                 <div id="loginERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
             </div>
             <input type="text" id="login">
-            
+
             <div class="LableDiv">
-                <label for="password">password</label>
+                <label for="password">Пароль</label>
                 <div id="passwordERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
             </div>
             <input type="password" name="password" id="password">
-            <div class="buttonDiv">
-                <button v-on:click="StartLogin">Войти</button>
-                <button @click="loginmode = 1">Создать аккаунт</button>
-            </div>
-        </div>
-        <div v-if="loginmode == 1" class="loginForm" id="createHR">
-            <h1>Регистрация</h1>
-            <div class="LableDiv">
-                <label for="full_name">ФИО</label>
-                <div id="full_nameERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
-            </div>
-            <input type="text" id="full_name">
 
-            <div class="LableDiv">
+            <div class="LableDiv" v-if="loginmode == 1">
                 <label for="email">Email</label>
                 <div id="emailERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
             </div>
-            <input type="email" id="email">
+            <input type="email" id="email" v-if="loginmode == 1">
 
-            <div class="LableDiv">
-                <label for="login">login</label>
-                <div id="loginERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
+            <div class="LableDiv" v-if="loginmode == 1">
+                <label for="full_name">ФИО</label>
+                <div id="full_nameERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
             </div>
-            <input type="text" id="login">
+            <input type="text" id="full_name" v-if="loginmode == 1">
 
-            <div class="LableDiv">
-                <label for="password">password</label>
-                <div id="passwordERR" class="ErrInputLable" style="display: none;">Пустое поле</div>
-            </div>
-            <input type="password" name="password" id="password">
             <div class="buttonDiv">
-                <button v-on:click="StartCreate">Создать аккаунт</button>
-                <button @click="loginmode = 0">Вернутся к входу</button>
+                <button v-if="loginmode == 0" @click="loginmode = 1">Создать аккаунт</button>
+                <button v-if="loginmode == 0" v-on:click="StartLogin">Войти</button>
+                <button v-if="loginmode == 1" @click="loginmode = 0">Войти</button>
+                <button v-if="loginmode == 1" v-on:click="StartCreate">Зарегистрироваться</button>
             </div>
         </div>
     </div>
@@ -130,7 +118,7 @@ async mounted() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .loginDiv{
     height: 100vh;
     width: 100vw;
@@ -139,24 +127,55 @@ async mounted() {
     left: 0px;
     overflow: hidden;
     display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+
+    background-image: url("../assets/image/Vector1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-direction: column;
+
+
+    .TitleText{
+        font-family: 'Aeroport';
+        font-weight: bold;
+        font-size: 40px;
+        white-space: pre-wrap;
+        margin: 30px;
+        max-width: 35%;
+        position: relative;
+        top: -80px;
+    }
 
     .loginForm{
         display: flex;
         flex-direction: column;
-        background-color: #a8a8a8;
-        padding: 14px;
-        border: 2px solid #6d6d6d;
-        border-radius: 15px;
-        box-shadow: inset 0px 0px 8px 0px #6001da;
-        height: 50vh;
-        width: 30vw;
+        border-radius: 30px;
+        padding: 10px 65px 45px;
+        background-color: white;
+        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1882352941), 0px 3px 2px rgba(0, 0, 0, 0.2784313725);
+        border: none;
+        min-width: 500px;
+        margin: 30px;
+        position: relative;
+
+        h1{
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Aeroport';
+            font-weight: bold;
+        }
 
 
         .LableDiv{
+            label{
+                font-size: 19px;
+                font-family: "Aeroport";
+                font-weight: lighter;
+                color: black;
+                margin-left: 5px;
+            }
             display: flex;
             .ErrInputLable{
                 margin: 0px 0px 0px 15px;
@@ -165,24 +184,35 @@ async mounted() {
         }
 
         input{
-            height: 15px;
+            height: 30px;
             padding: 5px;
-            background: none;
-            border: 2px solid #343475;
             margin: 5px 0px 10px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #000000;
+            font-size: 25px;
+            font-family: 'Aeroport';
+            font-weight: bold;
         }
         .buttonDiv{
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
             flex: 1;
+            padding: 5px 20px;
 
             button{
-                background: none;
-                border: 2px solid black;
-                padding: 7px;
-                border-radius: 5px;
-                background-color: #a690db;
+                border: none;
+                margin: 0px 10px;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background-color: #D9FA72;
+                flex: 1;
+                font-family: 'Aeroport';
+                font-weight: lighter;
+                font-size: 20px;
+                color: black;
+                box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.1882352941), 0px 2px 4px rgba(0, 0, 0, 0.2784313725);
             }
         }
     }

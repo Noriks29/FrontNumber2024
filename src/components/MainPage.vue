@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <header>
-            <div class="HeaderButtonList">
-                <button>Кнопки</button>
-                <button>Кнопки</button>
-                <button>Кнопки</button>
-                <button>Кнопки</button>
-                <button>Кнопки</button>
-                <button>Кнопки</button>
-            </div>
-            <div class="HeaderLogin">
-                <div>Имя пользователя</div>
-                <button @click="this.$emit('LoginStatus', undefined)">Выйти</button>
-            </div>
-        </header>
-    <section class="ActiveComponents">
-            <transition name="translate" mode="out-in">
-                <component :is="activeComponent" :ActiveComponent="ActiveComponents" @updateParentComponent="ChangeComponents"></component> 
-            </transition> 
-    </section>
-    
+    <div id="MainPage">
+        <div>
+            <header>
+                <div class="HeaderButtonList">
+                    <button :class="(activeComponent == 'TaskTracker') ? 'active' : ''">Задачи</button>
+                    <button>Поиск</button>
+                    <button>Отклики</button>
+                </div>
+                <div class="HeaderLogin">
+                    <button @click="this.$emit('LoginStatus', undefined)"><img src="../assets/image/BackRow.png" alt=""></button>
+                    <button><img src="../assets/image/Like.png" alt=""></button>
+                    <button><img src="../assets/image/Person.png" alt=""></button>
+                </div>
+            </header>
+            <section class="ActiveComponents">
+                    <transition name="translate" mode="out-in">
+                        <component :is="activeComponent" :ActiveComponent="ActiveComponents" :loginData="loginData" @updateParentComponent="ChangeComponents"></component> 
+                    </transition> 
+            </section>
+        </div>
     </div> 
 
 </template> 
 <script>
 import SelectParam from './SelectParam.vue';
+import TaskTracker from './TaskTracker.vue';
 
 export default {
 name: 'MainPage',
@@ -34,11 +34,12 @@ props:{
   },
 },
 components:{
-    SelectParam
+    SelectParam,
+    TaskTracker
 },
 data() {
   return{
-    activeComponent: "SelectParam",
+    activeComponent: "TaskTracker",
   };
 },
 methods: {
@@ -51,48 +52,86 @@ async mounted() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+#MainPage{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+
+    background-image: url(http://localhost:8080/img/Vector2.30998201.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+
     header{
-        position: fixed;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 2px solid #000072;
-        border-radius: 10px;
-        border-top-left-radius: 0px;
-        width: 98%;
-        left: 1%;
-        border-top-right-radius: 0px;
-        top: 0px;
-        padding: 0px;
+        margin: 10px 0px;
+    }
 
-        .HeaderButtonList{
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: space-evenly;
-            flex: 1;
-            margin-right: 10px;
-            button{
-                flex: 1;
-                padding: 10px;
+    .HeaderButtonList{
+        button{
+            padding: 13px 30px;
+            background-color: white;
+            margin: 0px 10px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Aeroport';
+            font-weight: lighter;
+            font-size: 20px;
+            transition: 0.3s all;
 
+            &:hover{
+                background-color: #e2e2e2;
+                box-shadow: 0px -3px 5px 0px rgb(127 127 127 / 14%);
+            }
+            &.active, &:active{
+                background-color: #ffffff;
+                box-shadow: inset 0px 2px 5px 0px rgb(0 0 0 / 59%), 0px 4px 3px 0px #0000002e;
             }
         }
-        .HeaderLogin{
-            display: flex;
-            width: fit-content;
-            padding: 1px 5px;
-            min-width: min-content;
-            
+    }
+    .HeaderLogin{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+
+        button{
+            border: none;
+            border-radius: 100%;
+            padding: 10px;
+            background-color: white;
+            height: 55px;
+            margin: 0px 7px;
+            box-shadow: inset 0px 2px 5px 0px rgb(0 0 0 / 33%), 0px 4px 3px 0px rgb(0 0 0 / 8%);
+
+            img{
+                width: 35px;
+                height: 35px;
+            }
+            &:hover{
+                background-color: #e2e2e2;
+            }
         }
     }
     .ActiveComponents{
-        position: relative;
-        height: 90vh;
-        top: 7vh;
-        left: 0px;
-        overflow: auto;
+        background-color: white;
+        border-radius: 20px;
+        padding: 5px;
+        height: 75vh;
+        width: 90vw;
         overflow-x: hidden;
+        overflow-y: auto;
     }
+}
+
 </style>
