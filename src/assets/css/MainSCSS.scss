@@ -8,6 +8,11 @@
     font-weight: lighter;
     src: local('Aeroport'), url("../fonts/AeroportLight.ttf");
 }
+@font-face {
+    font-family: 'Aeroport';
+    font-weight: normal;
+    src: local('Aeroport'), url("../fonts/AeroportMedium.ttf");
+}
 @keyframes BGShow {
     0% {opacity : 0;}
     100% {opacity : 1;}

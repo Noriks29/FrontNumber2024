@@ -54,13 +54,13 @@ data() {
 },
 methods: {
     async StartCreate(){
-        const form = document.getElementById("createHR").querySelectorAll("input")
+        const form = document.querySelectorAll("input")
         console.log(form)
         let flagValidate = false
         let data = {}
         form.forEach(input => {
             if(input.value == "") {
-                document.getElementById("createHR").querySelector("#"+input.id+"ERR").style.display = "block"
+                document.querySelector("#"+input.id+"ERR").style.display = "block"
                 flagValidate = true
                 
             }
@@ -86,13 +86,13 @@ methods: {
         }
     },
     async StartLogin(){
-        const form = document.getElementById("LoginHR").querySelectorAll("input")
+        const form = document.querySelectorAll("input")
         console.log(form)
         let flagValidate = false
         let data = {}
         form.forEach(input => {
             if(input.value == "") {
-                document.getElementById("LoginHR").querySelector("#"+input.id+"ERR").style.display = "block"
+                document.querySelector("#"+input.id+"ERR").style.display = "block"
                 flagValidate = true
             }
             else{
