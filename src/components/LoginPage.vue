@@ -70,7 +70,7 @@ methods: {
         })
         if (!flagValidate) {
             console.log(JSON.stringify(data, null, 2))
-            let responce =  await FetchPost("/hhelper/registration", data)
+            let responce =  await FetchPost("/hhelper/registration/", data)
             try {
                 if(responce.success){
                     alert("Аккаунт создвн")
@@ -101,7 +101,7 @@ methods: {
         })
         if (!flagValidate) {
             console.log(JSON.stringify(data, null, 2))
-            this.PersonData = await FetchPost("/hhelper/stafflog", data) || {}
+            this.PersonData = await FetchPost("/hhelper/stafflog/", data) || {}
             console.log(this.PersonData)
             if(this.PersonData.pk != undefined) this.EndLoginPage()
             
