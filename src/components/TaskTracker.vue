@@ -14,10 +14,13 @@
             </div>
             
         </div>
+        <div class="AddTaskButton"><Button @click="AddTask">Добавить задачу</Button></div>
     </div> 
 
 </template> 
 <script>
+import { FetchPost } from '@/Js/RestFetchService';
+
 
 export default {
 name: 'TaskTracker',
@@ -33,49 +36,13 @@ data() {
   };
 },
 methods: {
-
+    AddTask(){
+        alert("Тут будет добавление задачи")
+    }
 },
 async mounted() {
-  let data = {
-    "login": "test",
-    "tasks": [
-        {
-            "id": 1,
-            "description": "Менеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найтиМенеджера найти",
-            "created_at": "2024-10-25T15:34:09.894898+03:00"
-        },
-        {
-            "id": 2,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:34:44.196305+03:00"
-        },
-        {
-            "id": 3,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:40:26.146115+03:00"
-        },
-        {
-            "id": 4,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:40:55.550042+03:00"
-        },
-        {
-            "id": 5,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:40:58.973320+03:00"
-        },
-        {
-            "id": 6,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:41:30.914925+03:00"
-        },
-        {
-            "id": 7,
-            "description": "Менеджера найти",
-            "created_at": "2024-10-25T15:41:37.715889+03:00"
-        }
-    ]
-}
+  let data = await FetchPost("/hhelper/tasks/", {staff_id : this.loginData.pk})
+    
     console.log(data)
     this.dataTask = []
     data.tasks.forEach(element => {
@@ -122,6 +89,15 @@ async mounted() {
             background-color: black;
             border-radius: 100%;
             min-width: 10px;
+        }
+    }
+
+    .AddTaskButton{
+        button{
+            width: 100%;
+            height: 40px;
+            background-color: #d6d6d6;
+            border-radius: 30px;
         }
     }
 

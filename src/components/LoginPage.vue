@@ -73,7 +73,7 @@ methods: {
             let responce =  await FetchPost("/hhelper/registration/", data)
             try {
                 if(responce.success){
-                    alert("Аккаунт создвн")
+                    alert("Аккаунт создан")
                     this.loginmode = 0
                 }
                 else{
