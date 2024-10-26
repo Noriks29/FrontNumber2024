@@ -1,5 +1,7 @@
 <template>
     <div id="TaskTracker">
+        <div class="AddTaskButton" v-if="!addTask"><Button @click="addTask = true">Добавить задачу</Button></div>
+        <div class="AddTaskForm" v-if="addTask"><input id="AddTaskInput" type="text"><button @click="AddTask">Добавить</button></div>
         <div v-for="data, index in dataTask"
             :key="index"
             
@@ -11,10 +13,10 @@
             >
                 <span></span>
                 <p>{{ dataTask.description}} </p>
+                <button @click="DeleteRow(dataTask.id)">Удалить</button>
             </div>
             
         </div>
-        <div class="AddTaskButton"><Button @click="AddTask">Добавить задачу</Button></div>
     </div> 
 
 </template> 
@@ -32,12 +34,23 @@ props:{
 },
 data() {
   return{
-    dataTask: []
+    dataTask: [],
+    addTask: false
   };
 },
 methods: {
-    AddTask(){
-        alert("Тут будет добавление задачи")
+    async AddTask(){
+        let text = document.getElementById("AddTaskInput").value || "nonetext"
+        let data = {
+            staff_pk: this.loginData.pk,
+            description: text
+        }
+        await FetchPost("/hhelper/createtask/", data)
+        alert("Перезагрузи")
+    },
+    async DeleteRow(id){
+        await FetchPost("/hhelper/createtask/", {task_id: Number(id)})
+        alert("Перезагрузи")
     }
 },
 async mounted() {
@@ -95,6 +108,23 @@ async mounted() {
     .AddTaskButton{
         button{
             width: 100%;
+            height: 40px;
+            background-color: #d6d6d6;
+            border-radius: 30px;
+        }
+    }
+    .AddTaskForm{
+        display: flex;
+        align-items: center;
+        input{
+            height: 40px;
+            background-color: #d6d6d659;
+            border-radius: 30px;
+            flex: 1;
+            font-size: 20px;
+        }
+        button{
+            width: 200px;
             height: 40px;
             background-color: #d6d6d6;
             border-radius: 30px;

@@ -14,7 +14,7 @@ export default {
 name: 'App',
 data() {
   return{
-    statusLogin: true,
+    statusLogin: false,
     loginData: undefined,
     StartWort: 0
   };
