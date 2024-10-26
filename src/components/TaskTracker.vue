@@ -14,7 +14,7 @@
                 <span></span>
                 <button @click="DeleteRow(dataTask.id)" class="ButtonWhite1">-</button>
                 <p>{{ dataTask.description}} </p>
-                <button @click="DeleteRow(dataTask.id)" class="ButtonWhite1">Удалить</button>
+                
             </div>
             
         </div>
