@@ -49,7 +49,7 @@ methods: {
         alert("Перезагрузи")
     },
     async DeleteRow(id){
-        await FetchPost("/hhelper/createtask/", {task_id: Number(id)})
+        await FetchPost("/hhelper/deletetask/", {task_id: Number(id)})
         alert("Перезагрузи")
     }
 },
