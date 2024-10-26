@@ -3,9 +3,9 @@
         <div>
             <header>
                 <div class="HeaderButtonList">
-                    <button :class="(activeComponent == 'TaskTracker') ? 'active' : ''">Задачи</button>
-                    <button>Поиск</button>
-                    <button>Отклики</button>
+                    <button @click="ChangeComponents('TaskTracker')" :class="(activeComponent == 'TaskTracker') ? 'active' : ''">Задачи</button>
+                    <button @click="ChangeComponents('SearchComponent')" :class="(activeComponent == 'SearchComponent') ? 'active' : ''">Поиск</button>
+                    <button @click="ChangeComponents('ResponsesComponent')" :class="(activeComponent == 'ResponsesComponent') ? 'active' : ''">Отклики</button>
                 </div>
                 <div class="HeaderLogin">
                     <button @click="this.$emit('LoginStatus', undefined)"><img src="../assets/image/BackRow.png" alt=""></button>
@@ -25,6 +25,8 @@
 <script>
 import SelectParam from './SelectParam.vue';
 import TaskTracker from './TaskTracker.vue';
+import SearchComponent from './SearchComponent.vue'
+import ResponsesComponent from './ResponsesComponent.vue';
 
 export default {
 name: 'MainPage',
@@ -35,7 +37,9 @@ props:{
 },
 components:{
     SelectParam,
-    TaskTracker
+    TaskTracker,
+    SearchComponent,
+    ResponsesComponent
 },
 data() {
   return{
@@ -43,7 +47,9 @@ data() {
   };
 },
 methods: {
-
+    ChangeComponents(newC){
+        this.activeComponent = newC
+    }
 },
 async mounted() {
   console.log(this.loginData)
@@ -124,13 +130,9 @@ async mounted() {
         }
     }
     .ActiveComponents{
-        background-color: white;
-        border-radius: 20px;
-        padding: 5px;
+        margin: 20px 0px 0px;
         height: 75vh;
         width: 90vw;
-        overflow-x: hidden;
-        overflow-y: auto;
     }
 }
 

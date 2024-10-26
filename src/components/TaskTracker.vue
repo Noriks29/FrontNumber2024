@@ -1,7 +1,7 @@
 <template>
     <div id="TaskTracker">
-        <div class="AddTaskButton" v-if="!addTask"><Button @click="addTask = true">Добавить задачу</Button></div>
-        <div class="AddTaskForm" v-if="addTask"><input id="AddTaskInput" type="text"><button @click="AddTask">Добавить</button></div>
+        <div class="AddTaskButton" v-if="!addTask"><Button @click="addTask = true" class="ButtonWhite1">Добавить задачу</Button></div>
+        <div class="AddTaskForm" v-if="addTask"><input id="AddTaskInput" class="InputWhite1" type="text"><button class="ButtonWhite1" @click="AddTask">Добавить</button></div>
         <div v-for="data, index in dataTask"
             :key="index"
             
@@ -13,7 +13,7 @@
             >
                 <span></span>
                 <p>{{ dataTask.description}} </p>
-                <button @click="DeleteRow(dataTask.id)">Удалить</button>
+                <button @click="DeleteRow(dataTask.id)" class="ButtonWhite1">Удалить</button>
             </div>
             
         </div>
@@ -46,32 +46,34 @@ methods: {
             description: text
         }
         await FetchPost("/hhelper/createtask/", data)
-        alert("Перезагрузи")
+        this.addTask = false
+        await this.ReFetch()
     },
     async DeleteRow(id){
         await FetchPost("/hhelper/deletetask/", {task_id: Number(id)})
-        alert("Перезагрузи")
+        await this.ReFetch()
+    },
+    async ReFetch(){
+        let data = await FetchPost("/hhelper/tasks/", {staff_id : this.loginData.pk})
+        this.dataTask = []
+        data.tasks.forEach(element => {
+            element.created_at = element.created_at.split("T")[0].split("-")
+            element.created_at = element.created_at[2]+"."+element.created_at[1]+"."+element.created_at[0]
+            let flagadd = false
+            this.dataTask.forEach(Task => {
+                if (Task.created_at == element.created_at) {
+                    Task.list.push({id: element.id, description: element.description})
+                    flagadd = true
+                }
+            })
+            if(!flagadd){
+                this.dataTask.push({created_at: element.created_at, list: [{id: element.id, description: element.description}]})
+            }
+        });
     }
 },
 async mounted() {
-  let data = await FetchPost("/hhelper/tasks/", {staff_id : this.loginData.pk})
-    
-    console.log(data)
-    this.dataTask = []
-    data.tasks.forEach(element => {
-        element.created_at = element.created_at.split("T")[0].split("-")
-        element.created_at = element.created_at[2]+"."+element.created_at[1]+"."+element.created_at[0]
-        let flagadd = false
-        this.dataTask.forEach(Task => {
-            if (Task.created_at == element.created_at) {
-                Task.list.push({id: element.id, description: element.description})
-                flagadd = true
-            }
-        })
-        if(!flagadd){
-            this.dataTask.push({created_at: element.created_at, list: [{id: element.id, description: element.description}]})
-        }
-    });
+    await this.ReFetch()
     console.log(this.dataTask)
 }
 }
@@ -80,9 +82,15 @@ async mounted() {
 <style lang="scss" scoped>
 
 #TaskTracker{
-    margin: 20px;
+    padding: 15px;
+    margin: 10px;
     color: black;
-    font-family: 'Aeroport';
+    font-family: "Aeroport";
+    background-color: white;
+    height: 95%;
+    border-radius: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     h1{
        // font-weight: normal;
@@ -105,29 +113,26 @@ async mounted() {
         }
     }
 
+
     .AddTaskButton{
         button{
-            width: 100%;
             height: 40px;
-            background-color: #d6d6d6;
-            border-radius: 30px;
         }
+        display: flex;
+        flex-direction: row-reverse;
     }
     .AddTaskForm{
         display: flex;
         align-items: center;
         input{
-            height: 40px;
-            background-color: #d6d6d659;
-            border-radius: 30px;
+            height: 25px;
+            background-color: rgba(214, 214, 214, 0.3490196078);
+            border-radius: 4px;
             flex: 1;
             font-size: 20px;
         }
         button{
-            width: 200px;
             height: 40px;
-            background-color: #d6d6d6;
-            border-radius: 30px;
         }
     }
 

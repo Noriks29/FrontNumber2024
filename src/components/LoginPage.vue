@@ -193,6 +193,7 @@ async mounted() {
             font-size: 25px;
             font-family: 'Aeroport';
             font-weight: bold;
+            outline:none;
         }
         .buttonDiv{
             display: flex;

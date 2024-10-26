@@ -34,4 +34,29 @@ body{
             background-color: #D9FA72;
         }
     }
+
+    .ButtonWhite1{
+        padding: 5px 20px;
+        background-color: white;
+        margin: 0px 10px;
+        border: none;
+        border-radius: 10px;
+        font-family: "Aeroport";
+        font-weight: lighter;
+        font-size: 15px;
+        transition: 0.3s all;
+        box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.33), 0px 4px 3px 0px rgba(0, 0, 0, 0.08);
+    }
+    .InputWhite1{
+        padding: 5px 20px;
+        background-color: white;
+        margin: 0px 10px;
+        border: none;
+        border-radius: 10px;
+        font-family: "Aeroport";
+        font-weight: lighter;
+        font-size: 15px;
+        transition: 0.3s all;
+        box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.33), 0px 4px 3px 0px rgba(0, 0, 0, 0.08);
+    }
 }
