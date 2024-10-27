@@ -56,7 +56,7 @@ methods: {
     async StartSerach(){
         const text = document.getElementById("SearchData").value
         this.dataRequest = []
-        let dataS = await FetchGet("/hhelper/showresponses/", {profession_title: text}) || []
+        let dataS = await FetchPost("/hhelper/showresponses/", {profession_title: text}) || []
         this.dataId = dataS[0].id
         dataS[0].profiles.forEach(profiles => {
                     this.dataRequest.push({title: dataS[0].title, hh_url: profiles.hh_url, name: profiles.name, vk_id: profiles.vk_url, score: profiles.score, id: profiles.id})
