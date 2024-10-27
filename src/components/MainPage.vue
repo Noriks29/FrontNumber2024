@@ -49,6 +49,7 @@ data() {
 methods: {
     ChangeComponents(newC){
         this.activeComponent = newC
+        console.log(newC)
     }
 },
 async mounted() {

@@ -19,7 +19,7 @@
                 <div>{{ data.title }}</div>
                 <div><a :href="data.hh_url">HH.ru</a></div>
                 <div><a :href="data.vk_id">VK.ru</a></div>
-                <div>{{ data.score }}</div>
+                <div>Баллов после оценки - {{ data.score }}</div>
             </div>
             <div><button @click="console.log">+</button></div>
         </div>

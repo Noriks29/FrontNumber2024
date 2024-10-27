@@ -1,7 +1,7 @@
 import { adress } from "./ServerConfig";
 import DebugData from "../assets/resource/DebugDataFetch.json"
 const ShowFetchData = true
-const DEBUGMODE = false
+const DEBUGMODE = true
 
 function DisplayLoad(status){
     const element = document.getElementById("loadProcess");
