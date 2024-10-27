@@ -30,7 +30,7 @@
 
 </template> 
 <script>
-import { FetchGet } from '@/Js/RestFetchService';
+import { FetchPost } from '@/Js/RestFetchService';
 import SelectParam from './SelectParam.vue';
 
 
