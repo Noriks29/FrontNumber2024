@@ -1,5 +1,5 @@
 import { adress } from "./ServerConfig";
-
+import DebugData from "../assets/resource/DebugDataFetch.json"
 const ShowFetchData = true
 const DEBUGMODE = true
 /*
@@ -13,8 +13,8 @@ function DisplayLoad(status){
     }
 }*/
 async function FetchGet(http){
+    if (DEBUGMODE) return DebugData[http]
     try {
-        console.log(DEBUGMODE)
         const response = await fetch(adress+http);
         if (!response.ok) {
             let rezult = await response.json()
@@ -35,6 +35,7 @@ async function FetchGet(http){
 }
 
 async function FetchPost(http,datapost){
+    if (DEBUGMODE) return DebugData[http]
     if(ShowFetchData) console.log(JSON.stringify(datapost))
     try {
         const response = await fetch(adress+http,{

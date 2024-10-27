@@ -2,12 +2,23 @@
     <div id="SearchComponent">
         <div class="SearchDiv">
             <div class="inputSearch">
-                <input type="text" id="SearchData">
+                <input type="text" id="SearchData" placeholder="Введите запрос...">
                 <img src="../assets/image/Search.png" alt="" @click="StartSerach">
             </div>
         </div>
      <div class="SearchRezult">
-        fsdfsdfsdf
+        <div v-for="data, index in dataRequest"
+            :key="index"
+            class="DataRezult"
+        >
+            <div class="DivIcon"><img src="../assets/image/IconPerson.png" alt=""></div>
+            <div>
+                <h1>{{ data.name }}</h1>
+                <div>{{ data.title }}</div>
+                <div><a :href="data.hh_url">HH.ru</a></div>
+            </div>
+            <div><button @click="console.log">+</button></div>
+        </div>
 
      </div>
         
@@ -35,10 +46,27 @@ data() {
 methods: {
     async StartSerach(){
         const text = document.getElementById("SearchData").value
-        console.log(text)
-        let dataS = await FetchGet("/hhelper/searchprofiles/")
-        console.log(dataS)
-        alert(JSON.stringify(dataS))
+        this.dataRequest = []
+        let dataS = await FetchGet("/hhelper/searchprofiles/") || {categories: []}
+        if(text == ""){
+            dataS.categories.forEach(title => {
+                title.profiles.forEach(profiles => {
+                    this.dataRequest.push({title: title.title, hh_url: profiles.hh_url, name: profiles.name})
+                })
+            });
+        }
+        else{
+            dataS.categories.forEach(title => {
+                if (title.title == text) {
+                    title.profiles.forEach(profiles => {
+                        this.dataRequest.push({title: title.title, hh_url: profiles.hh_url, name: profiles.name})
+                    })
+                }
+            });
+        }
+        
+        //console.log(dataS)
+        console.log(this.dataRequest)
     }
 },
 async mounted() {
@@ -101,6 +129,27 @@ async mounted() {
         background-color: white;
         border-radius: 10px;
         padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 60vh;
+        overflow: auto;
+
+        .DataRezult{
+            display: flex;
+            background-color: #EBFFAC;
+            border-radius: 15px;
+            box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.33), 0px 4px 3px 0px rgba(0, 0, 0, 0.08);
+            padding: 10px;
+            width: 350px;
+            justify-content: space-between;
+            margin: 15px;
+
+            .DivIcon{
+                img{
+                    width: 50px;
+                }
+            }
+        }
     }
     
 

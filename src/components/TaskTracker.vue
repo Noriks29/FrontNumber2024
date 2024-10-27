@@ -55,12 +55,15 @@ methods: {
         await this.ReFetch()
     },
     async ReFetch(){
-        let data = await FetchPost("/hhelper/tasks/", {staff_id : this.loginData.pk})
+        let data = []
+        data = await FetchPost("/hhelper/tasks/", {staff_id : this.loginData.pk})
+        console.log(data)
         this.dataTask = []
         data.tasks.forEach(element => {
             element.created_at = element.created_at.split("T")[0].split("-")
             element.created_at = element.created_at[2]+"."+element.created_at[1]+"."+element.created_at[0]
             let flagadd = false
+            
             this.dataTask.forEach(Task => {
                 if (Task.created_at == element.created_at) {
                     Task.list.push({id: element.id, description: element.description})
@@ -74,6 +77,7 @@ methods: {
     }
 },
 async mounted() {
+    this.dataTask = []
     await this.ReFetch()
     console.log(this.dataTask)
 }

@@ -1,4 +1,223 @@
 {
-    "/hhelper/stafflog": ,
-    "/hhelper/registration": 
+    "/hhelper/stafflog/": {
+        "pk": 1,
+        "full_name": "Test test test",
+        "login": "test",
+        "email": "test@test.test"
+    },
+    "/hhelper/registration/": {}, 
+    "/hhelper/indicators/": [ 
+        {
+            "id": 1,
+            "name": "Коммуникабельность"
+        },
+        {
+            "id": 2,
+            "name": "Отзывчивость"
+        },
+        {
+            "id": 3,
+            "name": "Спокойствие"
+        },
+        {
+            "id": 4,
+            "name": "Доброжелательность"
+        },
+        {
+            "id": 5,
+            "name": "Умение слушать"
+        }
+    ],
+    "/hhelper/searchprofiles/": {
+        "categories": [
+            {
+                "title": "Менеджер",
+                "profiles": [
+                    {
+                        "name": "Алексей Кудрявцев",
+                        "hh_url": "https://spb.hh.ru/resume/f8ce4674000763d6800039ed1f6632394d5658?query=%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80&searchRid=1729788296496e2b160ea08a97f13e19&hhtmFrom=resume_search_catalog"
+                    },
+                    {
+                        "name": "Мария Васильева",
+                        "hh_url": "https://spb.hh.ru/resume/89151b7e0008f9964d0039ed1f714a6b387862?query=%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80&searchRid=17297901399984f49b29d11e7bbb55ad&hhtmFrom=resume_search_catalog"
+                    },
+                    {
+                        "name": "Игорь Соловьёв",
+                        "hh_url": "https://spb.hh.ru/resume/c42e645c0004ecfc5a0039ed1f614872784a61?query=%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80&searchRid=17297901399984f49b29d11e7bbb55ad&hhtmFrom=resume_search_catalog"
+                    }
+                ]
+            },
+            {
+                "title": "Бэкэнд разработчик",
+                "profiles": [
+                    {
+                        "name": "Дмитрий Жуков",
+                        "hh_url": "https://spb.hh.ru/resume/3b848aa80007f5764a0039ed1f674653587832?query=%D0%B1%D1%8D%D0%BA%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=17297904423533cf35049916a29a9eca&hhtmFrom=resume_search_catalog"
+                    },
+                    {
+                        "name": "Екатерина Рябова",
+                        "hh_url": "https://spb.hh.ru/resume/80ff8d08000327a0db0039ed1f3878476c774f?query=%D0%B1%D1%8D%D0%BA%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=17297904423533cf35049916a29a9eca&hhtmFrom=resume_search_catalog"
+                    },
+                    {
+                        "name": "Александр Захаров",
+                        "hh_url": "https://spb.hh.ru/resume/f443520e000891778c0039ed1f6a6570636f62?query=%D0%B1%D1%8D%D0%BA%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=17297904423533cf35049916a29a9eca&hhtmFrom=resume_search_catalog"
+                    }
+                ]
+            },
+            {
+                "title": "Фронтэнд разработчик",
+                "profiles": [
+                    {
+                        "name": "Дмитрий Жуков",
+                        "hh_url": "https://spb.hh.ru/resume/d361921c00063098820039ed1f453853704a78?query=%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=1729790885540f2fd4e0185f2f665791&hhtmFrom=resume_search_result"
+                    },
+                    {
+                        "name": "Ольга Лебедева",
+                        "hh_url": "https://spb.hh.ru/resume/956711b600051f6b270039ed1f32536c334c63?query=%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=1729790885540f2fd4e0185f2f665791&hhtmFrom=resume_search_result"
+                    },
+                    {
+                        "name": "Павел Борисов",
+                        "hh_url": "https://spb.hh.ru/resume/f9293c93000850bc8b0039ed1f3470576f7346?query=%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA&searchRid=1729790885540f2fd4e0185f2f665791&hhtmFrom=resume_search_result"
+                    }
+                ]
+            }
+        ]
+    },
+    "/hhelper/showresponses/": [
+        {
+            "title": "Менеджер",
+            "profiles": [
+                {
+                    "id": 1,
+                    "name": "Иван Иванов",
+                    "vk_url": "https://vk.com/id123456",
+                    "vk_id": "123456",
+                    "hh_url": "https://spb.hh.ru/resume/a4236fa70004df7b550039ed1f305676477033?query=менеджер&searchRid=17296304702487d4ba5ae23a403a9021&hhtmFrom=resume_search_catalog",
+                    "score": 0
+                },
+                {
+                    "id": 2,
+                    "name": "Анна Смирнова",
+                    "vk_url": "https://vk.com/id5729562",
+                    "vk_id": "5729562",
+                    "hh_url": "https://spb.hh.ru/resume/e891f0f10001a0c28d0039ed1f754651335353?query=менеджер&searchRid=17296304702487d4ba5ae23a403a9021&hhtmFrom=resume_search_catalog",
+                    "score": 0
+                },
+                {
+                    "id": 3,
+                    "name": "Павел Лебедев",
+                    "vk_url": "https://vk.com/id147844718",
+                    "vk_id": "147844718",
+                    "hh_url": "https://spb.hh.ru/resume/94c6252200050e339d0039ed1f546459537a41?query=менеджер&searchRid=17296304702487d4ba5ae23a403a9021&hhtmFrom=resume_search_catalog",
+                    "score": 0
+                }
+            ]
+        },
+        {
+            "title": "Бэкэнд разработчик",
+            "profiles": [
+                {
+                    "id": 4,
+                    "name": "Дмитрий Кузнецов",
+                    "vk_url": "https://vk.com/id334261716",
+                    "vk_id": "334261716",
+                    "hh_url": "https://spb.hh.ru/resume/8848f1f500053ee8260039ed1f526159614b31?query=Бэкэнд+разработчик&searchRid=1729630720407f9105c5f3412c722b46&hhtmFrom=resume_search_result",
+                    "score": 0
+                },
+                {
+                    "id": 5,
+                    "name": "Ольга Попова",
+                    "vk_url": "https://vk.com/id89392946",
+                    "vk_id": "89392946",
+                    "hh_url": "https://spb.hh.ru/resume/593132df0009286b350039ed1f64774c474b44?query=Бэкэнд+разработчик&searchRid=172963266295231d6dd986c865c81340&hhtmFrom=resume_search_result",
+                    "score": 0
+                },
+                {
+                    "id": 6,
+                    "name": "Александр Захаров",
+                    "vk_url": "https://vk.com/id84771161",
+                    "vk_id": "84771161",
+                    "hh_url": "https://spb.hh.ru/resume/036045480008c25b1d0039ed1f435769376441?query=Бэкэнд+разработчик&searchRid=172963266295231d6dd986c865c81340&hhtmFrom=resume_search_result",
+                    "score": 0
+                }
+            ]
+        },
+        {
+            "title": "Фронтэнд разработчик",
+            "profiles": [
+                {
+                    "id": 7,
+                    "name": "Алексей Петров",
+                    "vk_url": "https://vk.com/id475921200",
+                    "vk_id": "475921200",
+                    "hh_url": "https://spb.hh.ru/resume/730ba0d900086376080039ed1f4e4f42345151?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
+                    "score": 0
+                },
+                {
+                    "id": 8,
+                    "name": "Мария Ковалева",
+                    "vk_url": "https://vk.com/id358589101",
+                    "vk_id": "358589101",
+                    "hh_url": "https://spb.hh.ru/resume/8ca532980008eb0ee20039ed1f694153787758?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
+                    "score": 0
+                },
+                {
+                    "id": 9,
+                    "name": "Владимир Смирнов",
+                    "vk_url": "https://vk.com/id112233",
+                    "vk_id": "112233",
+                    "hh_url": "https://spb.hh.ru/resume/8810972f000894c6930039ed1f6f6c4344484e?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
+                    "score": 0
+                }
+            ]
+        }
+    ],
+    "/hhelper/tasks/": {
+        "login": "root2",
+        "tasks": [
+            {
+                "id": 1,
+                "description": "Менеджера найти",
+                "created_at": "2024-10-25T23:46:20.931584+03:00"
+            },
+            {
+                "id": 2,
+                "description": "Менеджера найти",
+                "created_at": "2024-10-25T23:46:24.014170+03:00"
+            },
+            {
+                "id": 3,
+                "description": "Менеджера найти",
+                "created_at": "2024-10-25T23:46:25.195062+03:00"
+            }
+        ]
+    },
+    "/hhelper/professionindicators/": {
+        "message": "Indicators successfully added to the profession."
+    },
+    "/hhelper/calculationscores/": {
+        "created_scores": [
+            {
+                "staff_member_id": 1,
+                "profile_id": 4,
+                "score": 0.6546821072925364
+            },
+            {
+                "staff_member_id": 1,
+                "profile_id": 5,
+                "score": 0.712211015158121
+            },
+            {
+                "staff_member_id": 1,
+                "profile_id": 6,
+                "score": 0.6494497844257372
+            }
+        ]
+    }
+    
+    
+
+    
+
+    
 }
