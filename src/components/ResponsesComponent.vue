@@ -1,14 +1,28 @@
 <template>
+    <SelectParam v-if="displayPocaz" :loginData="loginData" :profession="{dataId: dataId}" @Colculate="UppDateColculate" />
     <div id="SearchComponent">
         <div class="SearchDiv">
-            <button @click="ShowPocazat">Показатели</button>
+            <button @click="displayPocaz = true">Показатели</button>
             <div class="inputSearch">
-                <input type="text" id="SearchData">
+                <input type="text" id="SearchData" value="Менеджер">
                 <img src="../assets/image/Search.png" alt="" @click="StartSerach">
             </div>
         </div>
-     <div class="SearchRezult">
-        fsdfsdfsdf
+    <div class="SearchRezult">
+        <div v-for="data, index in dataRequest"
+            :key="index"
+            class="DataRezult"
+        >
+            <div class="DivIcon"><img src="../assets/image/IconPerson.png" alt=""></div>
+            <div>
+                <h1>{{ data.name }}</h1>
+                <div>{{ data.title }}</div>
+                <div><a :href="data.hh_url">HH.ru</a></div>
+                <div><a :href="data.vk_id">VK.ru</a></div>
+                <div>{{ data.score }}</div>
+            </div>
+            <div><button @click="console.log">+</button></div>
+        </div>
 
      </div>
         
@@ -17,7 +31,7 @@
 </template> 
 <script>
 import { FetchGet } from '@/Js/RestFetchService';
-
+import SelectParam from './SelectParam.vue';
 
 
 export default {
@@ -28,23 +42,42 @@ props:{
   },
 
 },
+components: {
+    SelectParam
+},
 data() {
   return{
-    dataRequest: []
+    dataRequest: [],
+    dataId: 1,
+    displayPocaz: false
   };
 },
 methods: {
     async StartSerach(){
         const text = document.getElementById("SearchData").value
-        console.log(text)
-        let dataS = await FetchGet("/hhelper/showresponses/")
-        console.log(dataS)
-        alert(JSON.stringify(dataS))
+        this.dataRequest = []
+        let dataS = await FetchGet("/hhelper/showresponses/", {profession_title: text}) || []
+        this.dataId = dataS[0].id
+        dataS[0].profiles.forEach(profiles => {
+                    this.dataRequest.push({title: dataS[0].title, hh_url: profiles.hh_url, name: profiles.name, vk_id: profiles.vk_url, score: profiles.score, id: profiles.id})
+                });
+        //console.log(dataS)
+        console.log(this.dataRequest)
     },
-    async ShowPocazat(){
-        let dataS = await FetchGet("/hhelper/indicators/")
-        console.log(dataS)
-        alert(JSON.stringify(dataS))
+    UppDateColculate(data){
+        this.displayPocaz = false
+        console.log(data)
+        data.created_scores.forEach(element => {
+            for (let index = 0; index < this.dataRequest.length; index++) {
+                const Request = this.dataRequest[index];
+                if(Request.id == element.profile_id){
+                    Request.score = element.score
+                    break
+                }
+                
+            }
+        })
+        console.log(this.dataRequest)
     }
 },
 async mounted() {
@@ -107,6 +140,27 @@ async mounted() {
         background-color: white;
         border-radius: 10px;
         padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 60vh;
+        overflow: auto;
+
+        .DataRezult{
+            display: flex;
+            background-color: #EBFFAC;
+            border-radius: 15px;
+            box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.33), 0px 4px 3px 0px rgba(0, 0, 0, 0.08);
+            padding: 10px;
+            width: 350px;
+            justify-content: space-between;
+            margin: 15px;
+
+            .DivIcon{
+                img{
+                    width: 50px;
+                }
+            }
+        }
     }
     
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="SelectPakazetel">
       <div class="indecatorsLoatGlopal">
         <div v-for="data,index in indecatorsLoatGlopal"
           :key="index"
@@ -9,11 +9,7 @@
           {{ data.name }}
         </div>
       </div>
-      <div>
-        <input type="text" name="requestSearch" id="requestSearch">
-      </div>
         <section class="tasks" @dragstart="$event.target.classList.add('selected')" @dragend="$event.target.classList.remove('selected')">
-            <h1 class="tasks__title">To do list</h1>
             <ul class="tasks__list" @dragover="DragoverEvent">
                 <li v-for="data, index in datalist"
                     :key="index"
@@ -29,7 +25,7 @@
 </template> 
 <script>
 
-import { FetchGet } from '@/Js/RestFetchService';
+import { FetchGet, FetchPost } from '@/Js/RestFetchService';
 
 export default {
 name: 'SelectParam',
@@ -37,6 +33,9 @@ props:{
   loginData:{
     type: Object
   },
+  profession: {
+    type: Object
+  }
 },
 data() {
   return{
@@ -92,18 +91,25 @@ methods: {
 
     return nextElement;
     },
-    SendPostPriority(){
+    async SendPostPriority(){
+
+        console.log(this.loginData, this.profession)
         this.data = []
         document.querySelector(`.tasks__list`).querySelectorAll(`.tasks__item`).forEach(element =>{
             this.data.push(element.id)
         })
         console.log(this.data)
-        let job_title = document.getElementById("requestSearch").value
         let dataPost = {
           "indicators": this.data,
-          "job_title": job_title
+          "profession_id": this.profession.dataId,
+          "staff_id": this.loginData.pk
         }
-        console.log(JSON.stringify(dataPost, null, 2))
+
+        let rezult =  await FetchPost("/hhelper/professionindicators/", dataPost)
+        console.log(rezult)
+        let colculate = await FetchPost("/hhelper/calculationscores/", {staff_id: this.loginData.pk, profession_id: this.profession.dataId})
+
+        this.$emit('Colculate', colculate)
     },
     AddIndicators(data){
 
@@ -123,7 +129,7 @@ methods: {
 },
 async mounted() {
   console.log(this.loginData)
-  let indicators = await FetchGet("/hhelper/indicators") || []
+  let indicators = await FetchGet("/hhelper/indicators/") || []
   console.log(indicators)
   this.indecatorsLoatGlopal = indicators
 }
@@ -131,6 +137,19 @@ async mounted() {
 </script>
 
 <style lang="scss">
+
+.SelectPakazetel{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #0000008c;
+}
 
 .tasks__title {
   margin: 50px 0 20px 0;
@@ -140,24 +159,24 @@ async mounted() {
  }
 
 .tasks__list {
-  margin: 0;
-  padding: 0;
+  background-color: white;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 15px;
 
   list-style: none;
 }
 
 .tasks__item {
   transition: background-color 0.5s;
-  margin-bottom: 10px;
-  padding: 5px;
-
-  text-align: center;
-  border: 2px line #374b46;
-  border-radius: 10px;
-  cursor: move;
-  background-color: #dff2ef;
-
-  transition: background-color 0.5s;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #374b46;
+    border-radius: 10px;
+    cursor: move;
+    background-color: #dff2ef;
+    transition: background-color 0.5s;
 }
 
 .tasks__item:last-child {
@@ -172,6 +191,10 @@ async mounted() {
 .indecatorsLoatGlopal{
   display: flex;
   flex-wrap: wrap;
+  background-color: white;
+    padding: 10px;
+    border-radius: 18px;
+    margin: 5px;
   div{
     padding: 4px;
     border: 2px solid black;

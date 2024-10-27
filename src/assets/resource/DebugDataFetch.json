@@ -85,6 +85,7 @@
     },
     "/hhelper/showresponses/": [
         {
+            "id": 1,
             "title": "Менеджер",
             "profiles": [
                 {
@@ -109,64 +110,6 @@
                     "vk_url": "https://vk.com/id147844718",
                     "vk_id": "147844718",
                     "hh_url": "https://spb.hh.ru/resume/94c6252200050e339d0039ed1f546459537a41?query=менеджер&searchRid=17296304702487d4ba5ae23a403a9021&hhtmFrom=resume_search_catalog",
-                    "score": 0
-                }
-            ]
-        },
-        {
-            "title": "Бэкэнд разработчик",
-            "profiles": [
-                {
-                    "id": 4,
-                    "name": "Дмитрий Кузнецов",
-                    "vk_url": "https://vk.com/id334261716",
-                    "vk_id": "334261716",
-                    "hh_url": "https://spb.hh.ru/resume/8848f1f500053ee8260039ed1f526159614b31?query=Бэкэнд+разработчик&searchRid=1729630720407f9105c5f3412c722b46&hhtmFrom=resume_search_result",
-                    "score": 0
-                },
-                {
-                    "id": 5,
-                    "name": "Ольга Попова",
-                    "vk_url": "https://vk.com/id89392946",
-                    "vk_id": "89392946",
-                    "hh_url": "https://spb.hh.ru/resume/593132df0009286b350039ed1f64774c474b44?query=Бэкэнд+разработчик&searchRid=172963266295231d6dd986c865c81340&hhtmFrom=resume_search_result",
-                    "score": 0
-                },
-                {
-                    "id": 6,
-                    "name": "Александр Захаров",
-                    "vk_url": "https://vk.com/id84771161",
-                    "vk_id": "84771161",
-                    "hh_url": "https://spb.hh.ru/resume/036045480008c25b1d0039ed1f435769376441?query=Бэкэнд+разработчик&searchRid=172963266295231d6dd986c865c81340&hhtmFrom=resume_search_result",
-                    "score": 0
-                }
-            ]
-        },
-        {
-            "title": "Фронтэнд разработчик",
-            "profiles": [
-                {
-                    "id": 7,
-                    "name": "Алексей Петров",
-                    "vk_url": "https://vk.com/id475921200",
-                    "vk_id": "475921200",
-                    "hh_url": "https://spb.hh.ru/resume/730ba0d900086376080039ed1f4e4f42345151?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
-                    "score": 0
-                },
-                {
-                    "id": 8,
-                    "name": "Мария Ковалева",
-                    "vk_url": "https://vk.com/id358589101",
-                    "vk_id": "358589101",
-                    "hh_url": "https://spb.hh.ru/resume/8ca532980008eb0ee20039ed1f694153787758?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
-                    "score": 0
-                },
-                {
-                    "id": 9,
-                    "name": "Владимир Смирнов",
-                    "vk_url": "https://vk.com/id112233",
-                    "vk_id": "112233",
-                    "hh_url": "https://spb.hh.ru/resume/8810972f000894c6930039ed1f6f6c4344484e?query=Фронтэнд+разработчик&searchRid=172963298854309139968fc3c3a558b4&hhtmFrom=resume_search_result",
                     "score": 0
                 }
             ]
@@ -199,17 +142,17 @@
         "created_scores": [
             {
                 "staff_member_id": 1,
-                "profile_id": 4,
+                "profile_id": 1,
                 "score": 0.6546821072925364
             },
             {
                 "staff_member_id": 1,
-                "profile_id": 5,
+                "profile_id": 2,
                 "score": 0.712211015158121
             },
             {
                 "staff_member_id": 1,
-                "profile_id": 6,
+                "profile_id": 3,
                 "score": 0.6494497844257372
             }
         ]
